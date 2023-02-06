@@ -1,8 +1,11 @@
 # OneDoor
 OneDoor findes til en række applikationer fx QGIS, ArcMap, ArcGIS Pro og Web.
 
-Oplever du en fejl i en af disse applikationer så kan du indrapportere fejlen på <a href="https://github.com/Septima/OneDoor/issues">issue-side</a>.
+Læs mere om OneDoor på [septima.dk](https://septima.dk/showcases/septima-onedoor)
 
-Har du forbedringsforslag, så er du også meget velkommen til at beskrive dette på <a href="https://github.com/Septima/OneDoor/issues">issue-side</a>.
+Fejl, ændringsønsker og spørgsmål kan oprettes som issues [her](https://github.com/Septima/OneDoor/issues)
 
-Du kan læse mere om OneDoor på septima.dk (link kommer)
+## Releases:
+
+1.8.3
+
