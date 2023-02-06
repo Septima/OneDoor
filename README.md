@@ -8,7 +8,7 @@ Fejl, ændringsønsker og spørgsmål kan oprettes som issues [her](https://gith
 Følg installationsvejledningen [her](https://onedoor.test.septima.dk/guide/) for at installere OneDoor første gang
 
 For at opgradere din OneDoor-installation skal du gøre to ting
--  Hente nyeste package.json [her](?)
+-  Download package.json fra nyeste release
 -  Eksekvér `npm install` i din site-folder
 
 ## Releases:
