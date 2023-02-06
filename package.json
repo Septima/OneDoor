@@ -1,0 +1,40 @@
+{
+  "name": "onedoor-server",
+  "version": "1.8.3",
+  "description": "OneDoor Server",
+  "module": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node . | pino-pretty -t -l",
+    "serve-debug": "nodemon --inspect | pino-pretty -t -l",
+    "service-install": "node service/index.js --add",
+    "service-uninstall": "node service/index.js --remove"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Septima/onedoor-server.git"
+  },
+  "keywords": [
+    "Septima",
+    "Search",
+    "Server"
+  ],
+  "dependencies": {
+    "@septima/septima-search-server": "1.6.2",
+    "cors": "2.8.5",
+    "crypto-random-string": "5.0.0",
+    "passport": "0.6.0",
+    "passport-azure-ad": "4.3.4",
+    "pg-promise": "11.0.2"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "author": "bjorn@septima.dk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Septima/s3-basic/issues"
+  },
+  "homepage": "https://github.com/Septima/s3-basic#readme"
+}
