@@ -1,13 +1,13 @@
 {
   "name": "onedoor-server",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "OneDoor Server",
   "module": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node . | pino-pretty -t -l",
-    "serve-debug": "nodemon --inspect | pino-pretty -t -l",
+    "serve": "node . ",
+    "serve-debug": "nodemon --inspect",
     "service-install": "node service/index.js --add",
     "service-uninstall": "node service/index.js --remove"
   },
@@ -21,7 +21,7 @@
     "Server"
   ],
   "dependencies": {
-    "@septima/septima-search-server": "1.6.2",
+    "@septima/septima-search-server": "1.6.11",
     "cors": "2.8.5",
     "crypto-random-string": "5.0.0",
     "passport": "0.6.0",
