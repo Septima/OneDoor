@@ -1,6 +1,6 @@
 {
   "name": "onedoor-server",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "description": "OneDoor Server",
   "module": "index.js",
   "type": "module",
@@ -21,7 +21,7 @@
     "Server"
   ],
   "dependencies": {
-    "@septima/septima-search-server": "1.6.11",
+    "@septima/septima-search-server": "1.6.15",
     "cors": "2.8.5",
     "crypto-random-string": "5.0.0",
     "passport": "0.6.0",
@@ -34,7 +34,7 @@
   "author": "bjorn@septima.dk",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Septima/s3-basic/issues"
+    "url": "https://github.com/Septima/OneDoor/issues"
   },
-  "homepage": "https://github.com/Septima/s3-basic#readme"
+  "homepage": "https://github.com/Septima/OneDoor#readme"
 }
