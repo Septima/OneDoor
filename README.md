@@ -13,6 +13,13 @@ For at opgradere din OneDoor-installation skal du gøre to ting
 
 ## Releases:
 
+### [1.8.6](https://github.com/Septima/OneDoor/releases/tag/1.8.6)
+- Link til Boligejer.dk rettet
+- Landbrugsnotering rapporteres nu korrekt på ejendom og ikke jordstykke
+- Tingbog->Servitutter: Vis id, hvis titel mangler
+- Vis tillægstekst for hæftelser
+- Der kan nu vises DAGI-info (Administrativ inddeling) for jordstykker
+
 ### [1.8.5](https://github.com/Septima/OneDoor/releases/tag/1.8.5)
 - [Implementér Offentlige Links for alle resultat-typer](https://github.com/Septima/OneDoor/issues/48#issue-1601286713)
 - [Implementér skråfoto for alle resultat-typer](https://github.com/Septima/OneDoor/issues/47#issue-1601249202)
