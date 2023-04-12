@@ -5,7 +5,13 @@ Læs mere om OneDoor på [septima.dk](https://septima.dk/showcases/septima-onedo
 
 Fejl, ændringsønsker og spørgsmål kan oprettes som issues [her](https://github.com/Septima/OneDoor/issues)
 
+Annonceringer og diskussioner finder du [her](https://github.com/Septima/OneDoor/discussions)
+
+## Installation  
+
 Følg installationsvejledningen [her](https://onedoor.test.septima.dk/guide/) for at installere OneDoor første gang
+
+## Opgradering ved nye releases  
 
 For at opgradere din OneDoor-installation skal du gøre to ting
 -  Download package.json fra nyeste release
