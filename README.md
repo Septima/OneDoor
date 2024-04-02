@@ -17,7 +17,7 @@ Følg installationsvejledningen [her](https://onedoor.test.septima.dk/guide/) fo
 
 ### Opgradering ved nye releases  
 
-For at opgradere din OneDoor-installation skal du gøre to ting
+For at opgradere din OneDoor-installation
 -  Kontakt din sædvanlige konsulent 
 
 ## Releases:
