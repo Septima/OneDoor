@@ -42,8 +42,6 @@ For at opgradere din OneDoor-installation
   - Links til LIFA's ejdExplorer for husnumre og jordstykker
   - Link til jordstykkerne ejdExplorer for en geometri tegnet i det store kort
 
-
-
 ### [1.8.6](https://github.com/Septima/OneDoor/releases/tag/1.8.6)
 - Link til Boligejer.dk rettet
 - Landbrugsnotering rapporteres nu korrekt på ejendom og ikke jordstykke
