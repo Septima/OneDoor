@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import os from 'os';
 import * as fs from 'fs';
 
 const root=process.env.INIT_CWD
