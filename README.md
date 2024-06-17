@@ -11,14 +11,12 @@ Annonceringer og diskussioner finder du [her](https://github.com/Septima/OneDoor
 - OneDoor er nu tæt integreret med IIS. Giver mulighed for Single Sign-On og rettighedstyring af indhold
   - Kontakt din sædvanlige konsulent 
 
-### Installation  
+### Installation (Første gang) 
 
-Følg installationsvejledningen [her](https://onedoor.test.septima.dk/guide/) for at installere OneDoor første gang
+Se [installationsvejledning](https://github.com/Septima/OneDoor/wiki/install)
 
-### Opgradering ved nye releases  
-
-For at opgradere din OneDoor-installation
--  Kontakt din sædvanlige konsulent 
+### Opgradering
+Se [vejledning](https://github.com/Septima/OneDoor/wiki/upgrade)
 
 ## Releases:
 
