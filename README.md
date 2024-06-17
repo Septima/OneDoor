@@ -22,7 +22,7 @@ For at opgradere din OneDoor-installation
 
 ## Releases:
 
-[Alle releases](//Septima/OneDoor/releases)
+[Alle releases](/Septima/OneDoor/releases)
 
 Seneste release:
 ### [1.13.4](https://github.com/Septima/OneDoor/releases/tag/1.13.4)
