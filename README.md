@@ -21,6 +21,10 @@ For at opgradere din OneDoor-installation
 -  Kontakt din sædvanlige konsulent 
 
 ## Releases:
+
+[Alle releases](releases)
+
+Seneste release:
 ### [1.13.4](https://github.com/Septima/OneDoor/releases/tag/1.13.4)
 
 - Plansearcher respekterer nu flere kommunenumre. Gælder også søgninger på virksomheder. Mange af jer søger i flere kommuner på én gang og disse søgninger virker nu igen
