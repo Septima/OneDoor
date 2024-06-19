@@ -27,7 +27,7 @@ else {
    let web_config = `<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <appSettings>
-        <add key="CONFIG_PATH" value="/mnt/data/code/OneDoor/config" />
+        <add key="CONFIG_PATH" value="${root}/config" />
     </appSettings>
     <system.webServer>
         <iisnode
@@ -45,7 +45,7 @@ else {
             uncFileChangesPollingInterval="5000"
             gracefulShutdownTimeout="60000"
             loggingEnabled="true"
-            logDirectory="/mnt/data/code/OneDoor/log"
+            logDirectory="${root}/log"
             debuggingEnabled="true"
             debugHeaderEnabled="false"
             debuggerPortRange="5058-6058"
