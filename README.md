@@ -23,6 +23,24 @@ Se [vejledning](https://github.com/Septima/OneDoor/wiki/upgrade)
 [Alle releases](https://github.com/Septima/OneDoor/releases)
 
 Seneste release:
+
+### [1.20.8](https://github.com/Septima/OneDoor/releases/tag/1.20.8)
+- Tingbogsoplysninger hentes direkte fra Tingbog API
+- Gsearch v 2
+- Visning af BFG-resultat (link) på  SFE
+- Bedre geomtri på BFG resultater
+
+- Nye muligheder i det store kort
+  - Vis BFG i store kort
+  - Ejerlejlighed i kortet
+  - Flere vektorfeatures i kortvisning
+  - CVR produktionsenheder i kortet
+  - Kortprint forbedret
+
+- Bedre geomtri på ejl resultater inklusiv mulighed for at se enkelte lodder
+- Ejerhistorik
+
+
 ### [1.13.4](https://github.com/Septima/OneDoor/releases/tag/1.13.4)
 
 - Plansearcher respekterer nu flere kommunenumre. Gælder også søgninger på virksomheder. Mange af jer søger i flere kommuner på én gang og disse søgninger virker nu igen
