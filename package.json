@@ -1,7 +1,7 @@
 {
   "type": "module",
   "dependencies": {
-    "@septima/onedoor-server": "1.21.1"
+    "@septima/onedoor-server": "1.25.24"
   },
 "scripts": {    
     "start":"node node_modules/@septima/onedoor-server --inspect"
