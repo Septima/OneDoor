@@ -24,6 +24,9 @@ Se [vejledning](https://github.com/Septima/OneDoor/wiki/upgrade)
 
 Seneste release:
 
+### [1.25.24](https://github.com/Septima/OneDoor/releases/tag/1.25.24)
+- Konvertering til ændringer i Plandata:
+
 ### [1.20.8](https://github.com/Septima/OneDoor/releases/tag/1.20.8)
 - Tingbogsoplysninger hentes direkte fra Tingbog API
 - Gsearch v 2
