@@ -11,9 +11,11 @@ OneDoor findes til en række applikationer fx QGIS, ArcMap, ArcGIS Pro og Web.
 
 Læs mere om OneDoor på [septima.dk](https://septima.dk/showcases/septima-onedoor)
 
-Fejl, ændringsønsker og spørgsmål kan oprettes som issues [her](https://github.com/Septima/OneDoor/issues)
+Se en demo af OneDoor her [OneDoor demo](https://onedoor.demo.septima.dk)
 
-Annonceringer og diskussioner finder du [her](https://github.com/Septima/OneDoor/discussions)
+Fejl, ændringsønsker og spørgsmål kan oprettes som issues [Opret issue](https://github.com/Septima/OneDoor/issues)
+
+Annonceringer og diskussioner finder du [Deltag i snakken](https://github.com/Septima/OneDoor/discussions)
 
 ## Installation og Opdatering
 - OneDoor er nu tæt integreret med IIS. Giver mulighed for Single Sign-On og rettighedstyring af indhold
