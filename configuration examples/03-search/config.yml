@@ -1,0 +1,194 @@
+metadata:
+  displayname: OneDoor Search
+  description: OneDoor search demo
+  homepage: http://septima.dk/search
+import:
+  sections:
+
+    - name: guide
+      dir: $.env.configDir
+    - name: ejerservice
+      dir: $.env.configDir
+    - name: params
+      dir: $.env.configDir
+    - name: standardkommune
+      dir: $.env.libDir/lib/standardkommune
+    - name: search
+      dir: $.env.configDir
+    #- name: tinglysning
+    #  dir: $.env.libDir/lib/standardkommune
+    - name: tingbog
+      dir: $.env.libDir/lib/standardkommune
+    # Indsæt, hvis der ønskes konfliktanalyse mod dmp's katalog
+    - name: dmp
+      dir: $.env.configDir
+    #- name: dmp
+    #  dir: $.env.libDir/lib/standardkommune
+    # Importér s4 hvis du har brug for at søge i s4 Index
+    #- name: s4index
+    #  dir: env.libDir/lib/standardkommune
+    # Importér og tilpas arcgis hvis du har brug for at søge i arcgis
+    #- name: arcgis-eksempel
+    #  dir: $env.libDir/lib/standardkommune
+controller:
+  _type: Septima.Search.Controller
+  _options:
+    blankBehavior: search
+  # De searchers, der skal søges i
+  # Udkommentér (#) eller fjern dem du ikke skal bruge
+  searchers:
+    - _ref: $.searchers.dawa
+    - _ref: $.searchers.gsearch
+    - _ref: $.searchers.plansystem
+    - _ref: $.searchers.stednavne
+    - _ref: $.searchers.cvr
+    #- _ref: $.searchers.s4Index
+    #- _ref: $.searchers.poi
+    - _ref: $.searchers.ejendomme
+    - _ref: $.searchers.bbr
+    - _ref: $.searchers.skoledistrikter
+    #- _ref: $.searchers.arcgis
+    #- _ref: $.tinglysning.geoPartnerSearcher
+    - _ref: $.tingbog.searcher
+    - _ref: $.searchers.geometrysearcher
+    - _ref: $.searchers.geometrysearcher_point
+    # Indsæt, hvis der ønskes konfliktanalyse mod dmp's katalog
+    - _ref: $.dmp.natur_features
+    - _ref: $.dmp.beskyttelse_features
+    - _ref: $.dmp.grundvand_features
+    - _ref: $.dmp.oevrige_features
+    - _ref: $.dmp.map_layers
+searchers:
+  skoledistrikter:
+    _ref: $.standardkommune.skoledistrikter
+  dawa:
+    _ref: $.standardkommune.dawa
+    detailhandlers:
+      - _ref: $.search.detailhandlers.omHusnummeret
+      - _type: Septima.Search.VejInfoProvider
+      - _type: Septima.Search.HusnumreForVejProvider
+        _options:
+          id: husnumre
+      - _ref: $.search.detailhandlers.tilstoedendeEjendomme
+      - _ref: $.search.detailhandlers.skraafoto
+      - _ref: $.search.detailhandlers.sqPlaner
+      - _ref: $.search.detailhandlers.dagiInfo
+      - _ref: $.search.detailhandlers.offentligeLinksForAdresseJordstykke
+  plansystem:
+    _ref: $.standardkommune.plansystem
+    detailhandlers:
+      - _ref: $.search.detailhandlers.planInfo
+      - _ref: $.search.detailhandlers.sqHusnumre
+      - _ref: $.search.detailhandlers.sqEjendomme
+      - _ref: $.search.detailhandlers.sqJordstykker
+  cvr:
+    _ref: $.standardkommune.cvr
+    detailhandlers:
+      - _type: Septima.Search.DataApi.CvrInfoProvider
+        _options:
+          id: cvr
+      - _type: Septima.Search.RegnskaberForCvrNummerHandler
+      - _ref: $.search.detailhandlers.skraafoto
+      - _ref: $.dmp.naturForJordstykke
+      - _ref: $.dmp.beskyttelseForJordstykke
+  poi:
+    _ref: $.standardkommune.poi
+    detailhandlers:
+      - _ref: $.search.detailhandlers.skraafoto
+      - _ref: $.search.detailhandlers.dagiInfo
+  ejendomme:
+    _ref: $.standardkommune.ejendomme
+    detailhandlers:
+      - _ref: $.search.detailhandlers.omEjendommen
+      #- _ref: $.search.detailhandlers.historiskeEjere
+
+      - _type: datafordeler.JordstykkerForEjendom
+        _options:
+          id: jordstykker
+          geosearcher:
+            _ref: $.searchers.gsearch
+      - _type: Septima.Search.Datafordeler.Bygninger
+        _options:
+          id: bygning
+          searcher:
+            _ref: $.searchers.bbr
+      - _ref: $.search.detailhandlers.sqPlaner
+
+      - _ref: $.search.detailhandlers.dagiInfo
+      - _ref: $.search.detailhandlers.offentligelinksForEjendom
+  bbr:
+    _ref: $.standardkommune.bbr
+    detailhandlers:
+      - _ref: $.search.detailhandlers.bbrInfoOgSager
+      - _ref: $.search.detailhandlers.sqPlaner
+      - _ref: $.search.detailhandlers.skraafoto
+
+  stednavne:
+    _ref: $.standardkommune.stednavne
+    detailhandlers:
+      - _type: Septima.Search.InfoForGeoStednavnProvider
+        _options:
+          id: omstednavn
+      - _ref: $.search.detailhandlers.skraafoto
+      - _ref: $.dmp.naturForForGeometry
+      - _ref: $.dmp.beskyttelseForGeometry
+  gsearch:
+    _ref: $.standardkommune.gsearch
+    detailhandlers:
+      - _ref:  $.search.detailhandlers.omJordstykket     
+      - _ref: $.search.detailhandlers.bygningerForHusnummerJordstykke
+      - _ref: $.search.detailhandlers.sqPlaner
+  jordstykke_proxy:
+    _type: Septima.Search.GeoSearch
+    _options:
+      targets:
+        - matrikelnumre
+  geometrysearcher:
+    _type: Septima.Search.ClientSearcher
+    _options:
+      singular: Geometry
+      plural: Geometries
+      isAsync: false
+      usesGeoFunctions: true
+      provider:
+        _type: Septima.Search.GeometrySearchProvider
+    detailhandlers:
+      - _ref: $.search.detailhandlers.sqHusnumre
+      - _ref: $.search.detailhandlers.sqEjendomme
+      - _ref: $.search.detailhandlers.sqJordstykker
+      - _ref: $.search.detailhandlers.sqPlaner
+      - _ref: $.dmp.naturForForGeometry
+      - _ref: $.dmp.beskyttelseForGeometry
+      #- _ref: $.ejerservice.EjerskaberForGeometriProvider
+
+      #- _ref: $.hearinglist.virksomheder
+      - _ref: $.search.detailhandlers.EjdExplorerLinks    
+  geometrysearcher_point:
+    _type: Septima.Search.ClientSearcher
+    _options:
+      singular: Point
+      plural: Points
+      isAsync: false
+      usesGeoFunctions: true
+      provider:
+        _type: Septima.Search.GeometrySearchProvider
+    detailhandlers:
+      # - _type: Septima.Search.ComposedDetailsHandler
+      #   _options:
+      #     more: true
+      #     buttonText: 'Om punktet'
+      #   detailhandlers:
+      #     - _ref: $.search.detailhandlers.sqJordstykker
+      #     - _ref: $.search.detailhandlers.sqEjendomme
+      - _ref: $.search.detailhandlers.sqHusnumre
+        _options:
+          proxySearcher:
+            _ref: $.searchers.jordstykke_proxy
+          showProxy: true
+      - _ref: $.search.detailhandlers.sqEjendomme
+      - _ref: $.search.detailhandlers.sqJordstykker
+      - _ref: $.search.detailhandlers.sqPlaner
+      - _ref: $.dmp.naturForForGeometry
+      - _ref: $.dmp.beskyttelseForGeometry
+
+      - _ref: $.search.detailhandlers.EjdExplorerLinks    

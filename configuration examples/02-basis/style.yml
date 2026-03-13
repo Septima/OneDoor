@@ -1,0 +1,704 @@
+types:
+  - source: gladsaxe
+    type: urn:gladsaxe:ds:arbejdsomraader
+    layer:        
+      features_host: "http://localhost:3000/custom/organisations/septima/configurations/webgis/arbejdsomraader/<%= bbox %>"
+      visible: true
+      loadingstrategy: bbox
+      features: true
+      features_dataType: json
+      features_type: rawjson
+      features_template: "{ 'type': 'Feature', 'properties': { 'id': <%= id %>, 'title':'<%= title %>'}, 'geometry': <%= _formatJSON(data.geometry) %>}"
+      features_style:
+      - namedstyle: "#004"
+maps:
+  - name: defaultmap
+    config:
+      map:
+        maxZoomLevel: 0
+        minZoomLevel: 16
+        view:
+          zoomLevel: 2
+          x: 671157
+          y: 6240022
+        layer:
+        - id: poi-bus
+          name: Busstoppested
+          namedlayer: "#septima_poi"
+          relation: "vt"
+          zIndex: 7
+          visible: true
+          disable: false
+          srs: EPSG:25832
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 10000
+            srid: 25832
+            undertype: bus
+            bbox: "<%= bbox[0] %>,<%= bbox[1] %>,<%= bbox[2] %>,<%= bbox[3] %>"
+            visible: false
+          maxResolution: 7
+          loadingstrategy: bbox
+          features_style:
+          - svg: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"><g fill="none" fill-rule="evenodd"><rect width="27" height="27" x=".5" y=".5" fill="currentColor" stroke="#FFF" rx="5"/><path fill="#FFF" fill-rule="nonzero" d="M14 5.25c4.594 0 7.656 1.203 7.656 2.734v1.641c.605 0 1.094.489 1.094 1.094v2.187c0 .605-.489 1.094-1.094 1.094v5.469c0 .605-.489 1.093-1.093 1.093v1.094c0 .605-.49 1.094-1.094 1.094h-1.094a1.093 1.093 0 0 1-1.094-1.094v-1.093H10.72v1.093c0 .605-.489 1.094-1.094 1.094H8.531a1.093 1.093 0 0 1-1.094-1.094v-1.093a1.093 1.093 0 0 1-1.093-1.094V14a1.093 1.093 0 0 1-1.094-1.094V10.72c0-.605.489-1.094 1.094-1.094V7.984c0-1.53 3.062-2.734 7.656-2.734Zm-5.469 5.469V14c0 .605.489 1.094 1.094 1.094h3.828V9.625H9.625c-.605 0-1.094.489-1.094 1.094Zm6.016 4.375h3.828c.605 0 1.094-.489 1.094-1.094v-3.281c0-.605-.489-1.094-1.094-1.094h-3.828v5.469Zm-5.469 3.828a1.093 1.093 0 1 0 0-2.188 1.093 1.093 0 1 0 0 2.188Zm9.844 0a1.093 1.093 0 1 0 0-2.188 1.093 1.093 0 1 0 0 2.188Zm-1.64-10.938c0-.3-.247-.546-.548-.546h-5.468c-.301 0-.547.246-.547.546 0 .301.246.547.547.547h5.468c.301 0 .547-.246.547-.547Z"/></g></svg>'
+            imgSize: "[28,28]"
+            fillcolor: rgba(90,126,158,1)
+            scale: 0.6
+            yOffset: 14
+        - id: poi-s-tog
+          name: S-tog
+          namedlayer: "#septima_poi"
+          relation: "vt"
+          zIndex: 9
+          visible: true
+          srs: EPSG:25832
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 10000
+            srid: 25832
+            undertype: s-tog
+            bbox: "<%= bbox[0] %>,<%= bbox[1] %>,<%= bbox[2] %>,<%= bbox[3] %>"
+          maxResolution: 7
+          loadingstrategy: bbox
+          features_style:
+          - symbol: square
+            radius: 9
+            text: <%= navn %>
+            textYOffset: 24
+            textFillcolor: rgba(351,91,76,1)
+            textFont: 600 12px/14px Inter
+            textMaxWidth: 24
+            textMaxResolution: 2
+            textOutlinewidth: 2
+            textOutlinecolor: rgba(255,255,255,0.5)
+          - svg: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="22"><g fill="none" fill-rule="nonzero"><path fill="#FFF" stroke="#FFF" d="M18.77 2.72a3.113 3.113 0 0 0-2.81-1.58H8.08c-1.15-.04-2.23.57-2.79 1.58L1.32 9.4c-.61.98-.61 2.22 0 3.2l3.95 6.68c.57 1 1.64 1.61 2.79 1.58h7.88c1.15.04 2.23-.57 2.79-1.58l3.95-6.68c.61-.98.61-2.22 0-3.2l-3.91-6.68Z"/><path fill="currentColor" d="M18.77 2.72a3.113 3.113 0 0 0-2.81-1.58H8.08c-1.15-.04-2.23.57-2.79 1.58L1.32 9.4c-.61.98-.61 2.22 0 3.2l3.95 6.68c.57 1 1.64 1.61 2.79 1.58h7.88c1.15.04 2.23-.57 2.79-1.58l3.95-6.68c.61-.98.61-2.22 0-3.2l-3.91-6.68ZM11.66 16.2c-1.46-.02-2.91-.15-4.36-.37v-1.74c1.21.21 2.43.33 3.65.37.86 0 2.83 0 2.83-1.25 0-2.25-6.31-.19-6.31-4.28 0-2.76 3.3-3.13 5.04-3.13 1.23.04 2.46.14 3.69.3v1.62c-.93-.07-2.48-.26-3.78-.26-.7 0-2.12.06-2.12 1.02 0 2.16 6.46.15 6.46 4.39 0 2.52-2.65 3.32-5.1 3.33Z"/></g></svg>'
+            imgSize: "[24,22]"
+            fillcolor: rgba(351,91,76,1)
+            scale: 1.2
+            yOffset: 11
+  
+        - id: vt
+          namedlayer: "#septima_standard"
+          name: "Standard kort fra Septima"
+          params:
+            usertoken: septimademo-7378432
+          visible: true
+          legendConfig:
+            icon: https://septima.dk/widget/img/daempet.png
+  - name: base
+    config:
+      debug: false
+      map:
+        useStore:
+          expire: "never"
+          map: true
+          layer: false
+        view:
+          zoomLevel: 6
+          x: 533706
+          y: 6226430
+        layer:
+        - namedlayer: "#septima_light"
+          zIndex: 1
+          visible: true 
+        - namedlayer: "#septima_standard"
+        - id: golf
+          name: Golf
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: golfanlaeg
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#golf"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: tennis
+          name: Tennis
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: tennisanlaeg_udendoers
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#tennis"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: football
+          name: Fodbold
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: fodboldanlaeg
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#football"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: fitness
+          name: Fitness
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: fitnesscenter
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#fitness"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: swim
+          name: Svømning
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: svoemmeanlaeg
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#swim"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: videregaaende
+          name: Videregående
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: videregaaende
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#education"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: gymnasieskole
+          name: Gymnasie
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: gymnasieskole
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#education"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: boernehave
+          name: Børnehave
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: boernehave
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#daycare"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: integreret
+          name: Vuggestue og børnehave
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: integreret
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#daycare"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: vuggestue
+          name: Vuggestue
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: vuggestue
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#daycare"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: medic
+          name: Lægepraktis
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: almen_laegepraksis
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#medic"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: apotek
+          name: Apotek
+          opacity: 0.7
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: apotek
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#pharmacy"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: hospital
+          name: Hospital
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: hospital
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#hospital"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: kulturhus_spillested
+          name: Kultur- og spillesteder
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: kulturhus_spillested
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#culture"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: museum
+          name: Museum
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: museum
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#museum"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: bibliotek
+          name: Bibliotek
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: bibliotek
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#library"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: jobcenter
+          name: Jobcenter
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: jobcenter
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#job"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: borgerservice
+          name: Borgerservice
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: borgerservice
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#citizen"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: soe
+          name: Sø
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: soe
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#lake"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: skov
+          name: Skov
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: skov
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#woods"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: park
+          name: Park
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: park
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#park"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: metro
+          name: Metro
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: metro
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#metro"
+            strokewidth: 0
+            strokecolor: rgba(255,255,255,1)
+        - id: s-train
+          name: S-tog
+          lazyload: true
+          visible: true
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: s-tog
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#s-train"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: letbane
+          name: Letbanestation
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: letbane
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#lightrail"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: tog
+          name: Togstation
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: tog
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#train"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: bus
+          name: Busstoppested
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: bus
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#bus"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: supermarked
+          name: Supermarked
+          lazyload: true
+          visible: false
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: supermarked
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#cart"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: kiosk
+          lazyload: true
+          visible: false
+          name: Kiosk
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: kiosk
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#store"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: tankstation
+          lazyload: true
+          visible: false
+          name: Tankstation
+          namedlayer: "#septima_poi"
+          features: true
+          params:
+            token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+            per_side: 1000
+            undertype: tankstation
+            punkt: '721830,6176377'
+          features_type: Point
+          features_style:
+            namedstyle: "#gasstation"
+            strokewidth: 2
+            strokecolor: rgba(255,255,255,1)
+        - id: arbejdsomraader
+          name: Arbejdsområder
+          features_host: "http://localhost:3000/custom/organisations/septima/configurations/webgis/arbejdsomraader/<%= bbox %>"
+          visible: true
+          loadingstrategy: bbox
+          features: true
+          features_dataType: json
+          features_type: rawjson
+          features_template: "{ 'type': 'Feature', 'properties': { 'id': <%= id %>, 'title':'<%= title %>'}, 'geometry': <%= _formatJSON(data.geometry) %>}"
+          features_style:
+          - namedstyle: "#004"
+        controls:
+        - layerswitch2:
+            groups:
+            - title: Park
+              hideOpacityOption: true
+              type: checkbox
+              selectAll: false
+              expanded: false
+              showCount: true
+              layers:
+              - arbejdsomraader
+            - title: Plansystem
+              type: checkbox
+              selectAll: false
+              expanded: true
+              showCount: true
+              layers:
+               - plansystem_vedtagetlokalplan
+               - plansystem_kommuneplanramme
+            - title: Matrikel
+              type: checkbox
+              selectAll: false
+              expanded: true
+              showCount: true
+              layers:
+               - Kortforsyningen_matrikelnumre
+               - DAF_sfe
+            - title: Offentlig transport
+              type: checkbox
+              selectAll: false
+              expanded: true
+              showCount: true
+              layers:
+              - s-train
+              - metro
+              - tog
+              - bus
+              - letbane
+            - title: Sundhed
+              hideOpacityOption: true
+              type: checkbox
+              selectAll: false
+              expanded: false
+              showCount: true
+              layers:
+              - apotek
+              - medic
+              - hospital
+            - title: Indkøb
+              type: checkbox
+              selectAll: false
+              expanded: false
+              showCount: true
+              layers:
+              - supermarked
+              - kiosk
+              - shopping
+              - tankstation
+            - title: Seværdigheder
+              type: checkbox
+              selectAll: false
+              expanded: false
+              showCount: true
+              layers:
+              - museum
+              - kulturhus_spillested
+            - title: Sport / Idræt
+              type: checkbox
+              selectAll: false
+              expanded: false
+              showCount: true
+              layers:
+              - swim
+              - fitness
+              - tennis
+              - football
+              - golf      
+        - print:
+            buttonIndex: 8
+            filename: kort.pdf
+            popup: true
+            popupTitle: Udskriv kort
+            popupSubTitle: Vælg kortudsnit ved at flytte kortet
+            popupButton: Udskriv
+            fenceText: 'Kortudsnit, der kommer med på udskrift'
+            formats:
+              - name: A4
+                value: a4
+                selected: true
+              - name: A3
+                value: a3
+            orientations: true
+            scales:
+              - name: '1:500'
+                value: 500
+              - name: '1:1000'
+                value: 1000
+              - name: '1:5000'
+                value: 5000
+        - fullextent:
+            buttonIndex: 9
+            disable: false
+        - fullscreen:
+            buttonIndex: 10
+            disable: false
+        - overviewmap:
+            buttonIndex: 6
+            showOnLoad: false
+            position: "bottomright"
+            disable: false
+            activateButton:
+              title: Vis oversigtskort
+              className: bbb
+            layer:
+            - namedlayer: "#dk_luftfoto"
+
+mapConfigs:
+- name: base
+  title: BASIS
+  keepZoom: false
+  wktsearch:
+    disable: true

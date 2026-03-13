@@ -1,0 +1,264 @@
+#Konfiguration af kald til DMP's datakatalog
+# Konfliktanalyse mod dmp's datasæt:
+#  Indsæt følgende i searchers
+#    - _ref: $.dmp.natur_features
+#    - _ref: $.dmp.beskyttelse_features
+#    - _ref: $.dmp.map_layers
+#  Indsæt detailhandlere på relevante searchere (typisk husnummer, jordstykke, ejendom)
+#   - _ref: $.dmp.naturForForGeometry
+#  Brug jordstykke som proxy (typisk for resultater med punkt-geometrier (ellers rammes potentielt flere jordstykker))
+#   - _ref: $.dmp.beskyttelseForJordstykke
+dmp:
+  katalog:
+    _type: Septima.Search.Dmp.Datakatalog.Katalog
+  feature_info:
+    _type: Septima.Search.ComposedDetailsHandler
+    _options:
+      more: true
+    detailshandlers:
+      - _type: Septima.Search.Details
+        _options:
+          targets: [{source: '*', typeId: 'urn:dmp:ds:lokalplaner-vedtaget'}]
+          details:
+            - type: result
+              label: "Se mere om den vedtagne lokalplan"
+              result:
+                searcher:
+                  _ref: $.searchers.plansystem
+                type: vedtagetlokalplan
+                id: $.feature.properties.planid
+      - _type: Septima.Search.Details
+        _options:
+          targets: [{source: '*', typeId: 'urn:dmp:ds:lokalplaner-forslag'}]
+          details:
+            - type: result
+              label: "Se mere om lokalplanen i forslag"
+              result:
+                searcher:
+                  _ref: $.searchers.plansystem
+                type: lokalplanforslag
+                id: $.feature.properties.planid
+      - _type: Septima.Search.Details
+        _options:
+          targets: [{source: '*', typeId: 'urn:dmp:ds:jordstykker-matrikel'}]
+          details:
+            - type: result
+              label: "Se mere om jordstykket"
+              result:
+                searcher:
+                  _ref: $.searchers.gsearch
+                type: matrikelnumre
+                id: $.feature.id
+      - _type: Septima.Search.Details
+        _options:
+          targets: [{source: '*', typeId: 'urn:dmp:ds:adgangsadresser'}]
+          details:
+            - type: "result"
+              label: "Se mere om adressen"
+              result:
+                searcher:
+                  _ref: $.searchers.dawa
+                type: adresse
+                id: $.feature.properties.id
+      - _type: Septima.Search.Details
+        _options:
+          targets: [{source: '*', typeId: 'urn:dmp:ds:samlet-fast-ejendom-gaeldende'}]
+          details:
+            - type: "result"
+              label: "Se mere om ejendommen"
+              result:
+                searcher:
+                  _ref: $.searchers.ejendomme
+                type: sfe
+                id: $.feature.id
+      - _type: Septima.Search.Dmp.Datakatalog.FeatureInfoProvider
+      - _type: Septima.Search.Dmp.Datakatalog.DatasetInfoProvider
+
+        #_options:
+        #  mapLayerSearcher:
+        #    _ref: $.dmp.map_layers
+  maplayer_info:
+    _type: Septima.Search.ComposedDetailsHandler
+    _options:
+      more: true
+    detailshandlers:
+      #- _type: Septima.Search.Dmp.Datakatalog.MapLayerInfoProvider
+      - _type: Septima.Search.Dmp.Datakatalog.DatasetInfoProvider
+        _options:
+          mapLayerSearcher:
+            _ref: $.dmp.map_layers
+  map_layers:
+    _type: Septima.Search.Dmp.Datakatalog.MapLayerSearcher
+    _options:
+      katalog:
+        _ref: $.dmp.katalog
+    detailhandlers:
+      - _ref: $.dmp.maplayer_info
+  # Searchere. Opret searchere for de kategorier, der ønskes
+  natur_features:
+    _type: Septima.Search.Dmp.Datakatalog.FeatureSearcher
+    _options:
+      katalog:
+        _ref: $.dmp.katalog
+      datasetIds:
+        - urn:dmp:ds:naturbesigtigelse-flader
+        - urn:dmp:ds:naturbesigtigelse-linjer
+        - urn:dmp:ds:naturbesigtigelse-punkter
+        - urn:dmp:ds:fund-af-arter-paa-habitatdirektivets-bilag-iv-fra-arter-dk
+    detailhandlers:
+      - _ref: $.dmp.feature_info
+      - _ref: $.standardkommune.detailhandlers.sqHusnumre
+      - _ref: $.standardkommune.detailhandlers.sqEjendomme
+      - _ref: $.standardkommune.detailhandlers.sqJordstykker
+      - _ref: $.standardkommune.detailhandlers.sqPlaner
+      - _ref: $.dmp.naturForForGeometry
+      - _ref: $.dmp.beskyttelseForGeometry
+      - _ref: $.standardkommune.detailhandlers.EjdExplorerLinks  
+  beskyttelse_features:
+    _type: Septima.Search.Dmp.Datakatalog.FeatureSearcher
+    _options:
+      katalog:
+        _ref: $.dmp.katalog
+      datasetIds:
+        - urn:dmp:ds:soebeskyttelseslinjer
+        - urn:dmp:ds:aabeskyttelseslinjer
+        - urn:dmp:ds:beskyttede-vandloeb
+        - urn:dmp:ds:natura2000-fuglebeskyttelse
+        - urn:dmp:ds:ramsaromraader
+        - urn:dmp:ds:natura2000-habitatomraader
+        - urn:dmp:ds:beskyttede-naturtyper
+        - urn:dmp:ds:kirkebyggelinjer
+        - urn:dmp:ds:skovbyggelinjer
+    detailhandlers:
+      - _ref: $.dmp.feature_info
+      - _ref: $.standardkommune.detailhandlers.sqHusnumre
+      - _ref: $.standardkommune.detailhandlers.sqEjendomme
+      - _ref: $.standardkommune.detailhandlers.sqJordstykker
+      - _ref: $.standardkommune.detailhandlers.sqPlaner
+      - _ref: $.dmp.naturForForGeometry
+      - _ref: $.dmp.beskyttelseForGeometry
+      - _ref: $.standardkommune.detailhandlers.EjdExplorerLinks  
+
+  grundvand_features:
+    _type: Septima.Search.Dmp.Datakatalog.FeatureSearcher
+    _options:
+      katalog:
+        _ref: $.dmp.katalog
+      datasetIds:
+        - urn:dmp:ds:boringsnaere-beskyttelsesomraader-mst
+        - urn:dmp:ds:foelsomme-indvindingsomraader-mst
+        - urn:dmp:ds:indsatsomraader-mst
+        - urn:dmp:ds:indvindingsoplande-uden-for-osd-mst
+        - urn:dmp:ds:drikkevandinteresser-mst
+    detailhandlers:
+      - _ref: $.dmp.feature_info
+  oevrige_features:
+    _type: Septima.Search.Dmp.Datakatalog.FeatureSearcher
+    _options:
+      katalog:
+        _ref: $.dmp.katalog
+      notTakenBy:
+        - _ref: $.dmp.natur_features
+        - _ref: $.dmp.beskyttelse_features
+    detailhandlers:
+      - _ref: $.dmp.feature_info
+      - _ref: $.standardkommune.detailhandlers.sqHusnumre
+        _options:
+          targets: [{source: '*', typeId: 'urn:dmp:ds:n-vaadomraadepotentiale'}]
+      - _ref: $.standardkommune.detailhandlers.sqEjendomme
+        _options:
+          targets: [{source: '*', typeId: 'urn:dmp:ds:n-vaadomraadepotentiale'}]
+      - _ref: $.standardkommune.detailhandlers.sqJordstykker
+        _options:
+          targets: [{source: '*', typeId: 'urn:dmp:ds:n-vaadomraadepotentiale'}]
+      - _ref: $.standardkommune.detailhandlers.sqPlaner
+      - _ref: $.dmp.naturForForGeometry
+      - _ref: $.dmp.beskyttelseForGeometry
+      - _ref: $.standardkommune.detailhandlers.EjdExplorerLinks
+        _options:
+          targets: [{source: '*', typeId: 'urn:dmp:ds:n-vaadomraadepotentiale'}]  
+
+  jordstykke_proxy:
+    _type: Septima.Search.GeoSearch
+    _options:
+      targets:
+        - matrikelnumre
+  # Detailhandlere. Med og uden jordstykke som proxy
+  # Natur
+  naturForJordstykke:
+    _type: s3.SqDetailsHandler
+    _options:
+      id: natur
+      meta:
+        type: labelvalue
+        value: Denne fane viser beskyttelser med lag defineret i lagkataloget fra Danmarks Miljøportal
+      buttonText: Natur
+      polygonIntersectsBuffer: -1
+      proxySearcher:
+        _ref: $.dmp.jordstykke_proxy
+      showProxy: true
+    searchers:
+      - _ref: $.dmp.natur_features
+  naturForForGeometry:
+    _type: s3.SqDetailsHandler
+    _options:
+      id: natur
+      meta:
+        type: labelvalue
+        value: Denne fane viser beskyttelser med lag defineret i lagkataloget fra Danmarks Miljøportal
+      buttonText: Natur
+      polygonIntersectsBuffer: -1
+    searchers:
+      - _ref: $.dmp.natur_features
+  # Beskyttelse
+  beskyttelseForJordstykke:
+    _type: s3.SqDetailsHandler
+    _options:
+      id: beskyttelse
+      meta:
+        type: labelvalue
+        value: Denne fane viser beskyttelser med lag defineret i lagkataloget fra Danmarks Miljøportal. 
+      buttonText: Beskyttelse
+      polygonIntersectsBuffer: -1
+      proxySearcher:
+        _ref: $.dmp.jordstykke_proxy
+      showProxy: true
+    searchers:
+      - _ref: $.dmp.beskyttelse_features
+  beskyttelseForGeometry:
+    _type: s3.SqDetailsHandler
+    _options:
+      id: beskyttelse
+      meta:
+        type: labelvalue
+        value: Denne fane viser beskyttelser med lag defineret i lagkataloget fra Danmarks Miljøportal
+      buttonText: Beskyttelse
+      polygonIntersectsBuffer: -1
+    searchers:
+      - _ref: $.dmp.beskyttelse_features
+  # Grundvand
+  grundvandForJordstykke:
+    _type: s3.SqDetailsHandler
+    _options:
+      id: grundvand
+      meta:
+        type: labelvalue
+        value: Denne fane viser beskyttelser med lag defineret i lagkataloget fra Danmarks Miljøportal
+      buttonText: Grundvand
+      polygonIntersectsBuffer: -1
+      proxySearcher:
+        _ref: $.dmp.jordstykke_proxy
+      showProxy: true
+    searchers:
+      - _ref: $.dmp.grundvand_features
+  grundvandForGeometry:
+    _type: s3.SqDetailsHandler
+    _options:
+      id: grundvand
+      meta:
+        type: labelvalue
+        value: Denne fane viser beskyttelser med lag defineret i lagkataloget fra Danmarks Miljøportal
+      buttonText: Grundvand
+      polygonIntersectsBuffer: -1
+    searchers:
+      - _ref: $.dmp.grundvand_features

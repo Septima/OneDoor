@@ -1,0 +1,18 @@
+ejerservice:
+  fetcher:
+    _type: ejerfortegnelse.Fetcher
+    _options:
+      endPoint: http://ejerservice.septima.dk/api
+      ejendomsSearcher:
+        _ref: $.searchers.ejendomme
+  EjerskaberForCvrProvider:
+    _type: ejerfortegnelse.EjerskaberForCvrProvider
+    _options:
+      fetcher:
+        _ref: $.ejerservice.fetcher
+  EjerskaberForGeometriProvider:          
+    _type: ejerfortegnelse.EjerskaberForGeometriProvider
+    _options:
+      buttonText: Ejere
+      fetcher:
+        _ref: $.ejerservice.fetcher
