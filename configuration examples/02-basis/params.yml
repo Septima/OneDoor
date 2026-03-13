@@ -1,0 +1,78 @@
+parameters:
+  # Bruges som option til alle searchere, som tager kommunekode som parameter.
+  #  "*": Alle kommuner, "101": København, "101 157": København og Gentofte
+  kommunekode: "*"
+  kommunalePEnheder_url: "https://data-api.test.septima.dk/postgrest/produktionsenhed_detaljer?token=jcI0o7C9O26utwCv&cvrnummer=eq.29189854&sammensatstatus=in.(Aktiv)"
+  # Credentials til kald til datafordelerem
+  datafordeler:
+    username: WJKYFPZASN
+    password: fgd4Septima
+    certifikat:
+      passphrase: "diAxyPb.w7g0"
+      dir:
+        _ref: $.env.organisationDir
+      filename: "2023_OCES3_SEPTIMA_PS_DATAFORDELER.p12"
+  # Token til Septimas skåfotoservice
+  skraafoto:
+    token: 931957e0-7937-4008-b2bb-5f937ea25ed3
+  # Token til Septimas POI-service
+  poi:
+    token: 6e01742f-a4d5-429e-b959-6b7ee3f7cf4b
+    hovedtyper: ['*'] # brug '*'' for alle, og tom for ingen søgning
+    undertyper: []  # brug '*'' for alle, og tom for ingen søgning
+  # Parametre til s4Index
+  s4Index:
+    host: http://spatialsuite440.kpc.asus:8080
+    datasources: "*"
+  gsearch:
+    targets:
+      #- kommuner
+      - matrikelnumre
+      #- opstillingskredse
+      #- politikredse
+      #- postdistrikter
+      #- regioner
+      #- retskredse
+      #- sogne
+      #- matrikelnumre_udgaaet
+  plansystem:
+    targets:
+      - vedtagetlokalplan
+      - lokalplanforslag
+      - kommuneplanramme
+      - kommuneplantillaeg
+      - byggefelt
+      - delomraade
+      - regionplan
+      - zonestatus
+      - kystnaerhedszone
+      #- transportkorridor
+      - vedtagetkloakopland
+      - mulighedforudtraedenkloakopland
+  dagiInfo:
+    fields:
+      - kommuner_result
+      - sogne_result
+      - opstillingskredse_result
+      - politikredse_result
+      - retskredse_result
+  offentligeLinksForAdresseJordstykke:
+    links: ["jfa","bbrmeddelelse","bbrejendom","boligejer.dk","vurdering","bbkort","ois", "geokoder", "retbbr", "skraafoto", "skraafoto_js", "skraafoto_dataforsyningen", "sdfekort", "plankort"]
+  planInfo:
+    fields:
+      lp: ['plannr', 'plannavn', 'anvendelsegenerel', 'doklink', 'anvspec', 'datovedt', 'datoforsl']
+      kpl: ['plannr','plannavn','distrikt','anvendelsegenerel','notbebygom','notat','datovedt', 'datoforsl']
+  # Certifikatoplysninger til tinglysning (Hvilket som helst gyldigt certifikat)
+  # For nemheds skyld bruges det samme som til datafordeleren
+  tinglysning_dk:
+    certifikat:
+      passphrase:
+        _ref: $.parameters.datafordeler.certifikat.passphrase
+      certificateDir:
+        _ref: $.parameters.datafordeler.certifikat.dir
+      certificateFilename:
+        _ref: $.parameters.datafordeler.certifikat.filename
+  geoPartner:
+    userName: septima_eval@tlconnect
+    passWord: 4uYyGaryBU
+  
