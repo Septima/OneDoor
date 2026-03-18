@@ -1,13 +1,14 @@
 # OneDoor
 
-## Documentation
+OneDoor integrere sømløst til en række applikationer
+- Septima - OneDoor web
+- QGIS
+- SWECO - Spatial Suite
+- Nordiq - WebGIS
+- WSP - NetGIS
+- GeoInfo - Geofokus
+- ESRI - ArcGIS Pro.
 
-Project documentation is available in the `docs` folder and powered by [VitePress](https://vitepress.dev/).
-
-- Start local docs server: `npm run docs:dev`
-- Build static docs: `npm run docs:build`
-- Preview built docs: `npm run docs:serve`
-OneDoor findes til en række applikationer fx QGIS, ArcMap, ArcGIS Pro og Web.
 
 Læs mere om OneDoor på [septima.dk](https://septima.dk/showcases/septima-onedoor)
 
