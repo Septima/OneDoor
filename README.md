@@ -1,6 +1,6 @@
 # OneDoor
 
-OneDoor integrere sømløst til en række applikationer
+OneDoor integrerer sømløst til en række applikationer
 - Septima - OneDoor web
 - QGIS
 - SWECO - Spatial Suite
