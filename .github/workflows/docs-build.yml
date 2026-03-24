@@ -24,7 +24,7 @@ jobs:
 
       - name: Prepare docs-only install
         run: |
-          node -e "const fs=require('fs'); const pkg=JSON.parse(fs.readFileSync('package.json','utf8')); delete pkg.dependencies; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');"
+          node -e "const fs=require('fs'); const pkg=JSON.parse(fs.readFileSync('package.json','utf8')); const version=(pkg.dependencies && pkg.dependencies['@septima/onedoor-server']) || '1.0.0'; fs.appendFileSync(process.env.GITHUB_ENV, 'ONEDOOR_VERSION=' + version + '\n'); delete pkg.dependencies; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');"
 
       - name: Install docs dependencies
         run: npm install --no-package-lock

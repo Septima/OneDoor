@@ -8,7 +8,12 @@ const __dirname = dirname(__filename)
 const packageJson = JSON.parse(
   readFileSync(join(__dirname, '../../package.json'), 'utf-8')
 )
-const version = packageJson.dependencies['@septima/onedoor-server']?.replace(/^\D+/, '') || '1.0.0'
+const oneDoorVersion =
+  packageJson?.dependencies?.['@septima/onedoor-server'] ??
+  packageJson?.devDependencies?.['@septima/onedoor-server'] ??
+  process.env.ONEDOOR_VERSION ??
+  '1.0.0'
+const version = String(oneDoorVersion).replace(/^\D+/, '')
 
 export default defineConfig({
   lang: 'da',
