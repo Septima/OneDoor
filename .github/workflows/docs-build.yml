@@ -22,8 +22,15 @@ jobs:
           node-version: 20
           cache: npm
 
+      - name: Prepare docs-only install
+        run: |
+          node -e "const fs=require('fs'); const pkg=JSON.parse(fs.readFileSync('package.json','utf8')); delete pkg.dependencies; fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');"
+
+      - name: Install docs dependencies
+        run: npm install --no-package-lock
+
       - name: Build docs
-        run: npm exec --yes --package vitepress@^1.0.0 vitepress build docs
+        run: npm run docs:build
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
