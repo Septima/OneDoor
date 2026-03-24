@@ -22,8 +22,8 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Install devDependencies only
-        run: npm ci --omit=prod
+      - name: Install docs tooling only
+        run: npm install --no-save vitepress@^1.0.0 @datagouv/vitepress-plugin-matomo@^1.0.5
 
       - name: Build docs
         run: npm run docs:build
