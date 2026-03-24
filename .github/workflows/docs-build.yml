@@ -23,7 +23,7 @@ jobs:
           cache: npm
 
       - name: Install devDependencies only
-        run: npm ci --only=dev
+        run: npm ci --omit=prod
 
       - name: Build docs
         run: npm run docs:build
