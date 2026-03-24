@@ -1,0 +1,36 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build docs",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"docs:build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build docs",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"docs:build"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Docs dev",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"docs:dev"
+			],
+			"isBackground": true,
+			"group": "none"
+		}
+	]
+}
