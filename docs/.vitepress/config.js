@@ -19,6 +19,7 @@ export default defineConfig({
   lang: 'da',
   title: 'OneDoor',
   description: 'Formidling af geografiske data',
+  base: '/OneDoor/', // GitHub Pages base path
   head: [
     [
       'link',
