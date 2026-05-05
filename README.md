@@ -24,10 +24,10 @@ Annonceringer og diskussioner finder du [Deltag i snakken](https://github.com/Se
 
 ### Installation (Første gang) 
 
-Se [[installationsvejledning](https://github.com/Septima/OneDoor/wiki/install)](https://github.com/Septima/OneDoor/wiki/Installations-vejledning)
+Se https://github.com/Septima/OneDoor/wiki/Installations-vejledning
 
 ### Opgradering
-Se [vejledning](https://github.com/Septima/OneDoor/wiki/upgrade)
+Se https://github.com/Septima/OneDoor/wiki/upgrade
 
 ## Releases:
 
