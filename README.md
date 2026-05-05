@@ -19,8 +19,7 @@ Fejl, ændringsønsker og spørgsmål kan oprettes som issues [Opret issue](http
 Annonceringer og diskussioner finder du [Deltag i snakken](https://github.com/Septima/OneDoor/discussions)
 
 ## Installation og Opdatering
-- OneDoor er nu tæt integreret med IIS. Giver mulighed for Single Sign-On og rettighedstyring af indhold
-  - Kontakt din sædvanlige konsulent 
+
 
 ### Installation (Første gang) 
 
