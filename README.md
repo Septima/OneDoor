@@ -1,32 +1,26 @@
 # OneDoor
 
-OneDoor integrerer sømløst til en række applikationer
-- Septima - OneDoor web
-- QGIS
-- SWECO - Spatial Suite
-- Nordiq - WebGIS
-- WSP - NetGIS
-- GeoInfo - Geofokus
-- ESRI - ArcGIS Pro.
+## Brugervejledning
+https://onedoor-docs.septima.dk/onedoor-docs/
+ - Opdatering af OneDoor
+- Konfiguration
+- GIS klienter
+- m.m.
 
+## Brugergruppe
+Brugergruppen mødes ca en gang om måneden. Vi udveksler erfaring, tips og tricks og får præsenteret nye features og forbedringer
+https://github.com/Septima/OneDoor/discussions
 
+## Fejl, ændringsønsker og spørgsmål  oprettes som issues
+https://github.com/Septima/OneDoor/issues
+
+## Yderligere information
 Læs mere om OneDoor på [septima.dk](https://septima.dk/showcases/septima-onedoor)
 
 Se en demo af OneDoor her [OneDoor demo](https://onedoor.demo.septima.dk)
 
-Fejl, ændringsønsker og spørgsmål kan oprettes som issues [Opret issue](https://github.com/Septima/OneDoor/issues)
-
-Annonceringer og diskussioner finder du [Deltag i snakken](https://github.com/Septima/OneDoor/discussions)
-
-## Installation og Opdatering
 
 
-### Installation (Første gang) 
-
-Se https://github.com/Septima/OneDoor/wiki/Installations-vejledning
-
-### Opgradering
-Se https://github.com/Septima/OneDoor/wiki/upgrade
 
 ## Releases:
 
